@@ -1,3 +1,30 @@
+# Berthie params 
+
+```python
+python3 ./src/simulator/run_simulation.py -ofname ./dataset/pulses.h5 -n_threads 10 -n_images 50000 -n_angles 16 -n_energies 128 -polstrength 1 -centralenergy 64
+parser = argparse.ArgumentParser(description='CookieBox simulator for Attosecond Angular Streaking')
+parser.add_argument('-ofname', type=str,required=True, help='ouput path and base file name')
+parser.add_argument('-n_threads',   type=int, default=2, help='Number of Threads')
+parser.add_argument('-offset_threads',   type=int, default=0,required=False, help='DONT USE: Offset for Threads, used to produce rngseed[offset] to rngseed[offset + n_threads]')
+parser.add_argument('-n_angles',type=int, default=128, help='Number of angles')
+parser.add_argument('-n_energies',type=int, default=128, help='Number of energy bins [in eV for now]')
+parser.add_argument('-n_images', type=int,default=10, help='Number of images per thread')
+parser.add_argument('-drawscale', type=int,default=1,required=False, help='Scaling for draws from the distribution, e.g. scale the number of electrons')
+parser.add_argument('-drawscalevar', type=int,default=0,required=False, help='Sinusoidal variation (over nthreads)  for scaling the number of draws from the distribution, e.g. scale the number of electrons')
+parser.add_argument('-sasescale', type=int,default=3,required=False, help='Scaling for number of sase subspikes (like number of sinusoids)')
+parser.add_argument('-sasescalevar', type=int,default=0,required=False, help='Sinusoidal variation (over nthreads) for scaling the number of sinusoids')
+parser.add_argument('-centralenergy', type=float,default=50.0,required=False, help='central photon energy')
+parser.add_argument('-centralenergywidth', type=float,default=5.0,required=False, help='central photon energy width')
+parser.add_argument('-centralenergyvar', type=float,default=0.0,required=False, help='central photon energy variation as sinusoid over nthreads')
+parser.add_argument('-darkscale', type=float,default=0.0005,required=False, help='Scaling for the dark count haze that is independent total intensity')
+parser.add_argument('-secondaryscale', type=float,default=0.002,required=False, help='Scaling for the secondary counts as proportion of total intensity')
+parser.add_argument('-kickstrength', type=float,default=30,required=False, help='angular streaking kick strength')
+parser.add_argument('-kickstrengthvar', type=float,default=5,required=False, help='variation of kick strength due to streaking laser fluctuations')
+parser.add_argument('-polstrength', type=float,default=0,required=False, help='anisotropy is 1 + polstrength*cos(2*theta))')
+parser.add_argument('-polstrengthvar', type=float,default=0,required=False, help='variation of anisotropy')
+parser.add_argument('-testsplit', type=float,default=0,required=False, help='test images as percent of total')  # the split will 
+```
+
 # TODO
 Audrey is 16 by 128 Ximg --> npulses.  
 Use python library for counting operations/clock cycles per image.  
