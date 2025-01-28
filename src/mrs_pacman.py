@@ -10,6 +10,7 @@ import math
 import time
 import cv2
 import multiprocessing as mp
+from pyJoules.energy_meter import measure_energy
 
 from utils import gauss,addGauss2d,addGauss2d_padding_10,detect_peaks
 
@@ -97,6 +98,7 @@ def fillKernel(width,strength,kern):
     norm = math.sqrt(np.inner(kern.flatten(),kern.flatten()))
     return kern/norm
 
+@measure_energy
 def main(fname,plotting=False):
     rng = np.random.default_rng()
     print('For now assuming 4 micron wavelength streading for a 13 fs temporal window')
